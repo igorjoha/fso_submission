@@ -1,4 +1,11 @@
-const App = () => {
+import React from 'react';
+
+const Header = (props) => {return(<><p>{props.course}</p></>)}
+const Total = (props) => {return(<><p>Total of exersizes is {props.total}</p></>)}
+const Content = (props) => {return(<><p>{props.content}</p></>)}
+
+const App = (props) => {
+  // const-definitions
   const course = 'Half Stack application development'
   const part1 = 'Fundamentals of React'
   const exercises1 = 10
@@ -9,17 +16,10 @@ const App = () => {
 
   return (
     <div>
-      <h1>{course}</h1>
-      <p>
-        {part1} {exercises1}
-      </p>
-      <p>
-        {part2} {exercises2}
-      </p>
-      <p>
-        {part3} {exercises3}
-      </p>
-      <p>Number of exercises {exercises1 + exercises2 + exercises3}</p>
+      <Header course={course} />
+      <Content content={part1+" has "+exercises1+" exersizes "+part2+" has "+exercises2+" exersizes "+part3+" has "+exercises3+" exersizes."}/>
+      <Total total={exercises1+exercises2+exercises3}/>
+
     </div>
   )
 }
