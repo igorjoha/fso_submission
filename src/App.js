@@ -1,15 +1,18 @@
 import './App.css';
 
-function App() {
+const App = () => {
+  const now = new Date()
+  const a = 10
+  const b = 20
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <p>
-         ready to do fso project.
-        </p>
-      </header>
+    <div>
+      <p>Hello world, it is {now.toString()}</p>
+      <p>
+        {a} plus {b} is {a + b}
+      </p>
     </div>
-  );
+  )
 }
 
 export default App;
