@@ -1,50 +1,53 @@
-import React from 'react';
-
-const Header = (props) => {return(<>{props.course}</>)}
-const Total = (props) => {return(<>{props.total_exrszs}</>)} 
-const Part = (props) => { return (<>{props.soderzhanie}</>)}
-const Content=(props)=>{ return(
+const Header = (props) => {return (<><h1>{props.course}</h1></>)}
+const Part = (props) => {return (<>{props.part.name} {props.part.exercises}</>)}
+const Content = (props) => {
+  return (
     <>
-      <Part  parts={props.soderzhanie[0]}/>  
-      <Part  parts={props.soderzhanie[1]}/>  
-      <Part  parts={props.soderzhanie[2]}/>     
+      <Part part={props.parts[0]} />
+      <Part part={props.parts[1]} />
+      <Part part={props.parts[2]} />
     </>
   )
 }
-  
 
-const App = (props) => {
-  const course = 'Half Stack application development'
-  const parts = [
-    {
-      id:0,
-      name: 'Fundamentals of React',
-      exercises: 10
-    },
-    {
-      id:1,
-      name: 'Using props to pass data',
-      exercises: 7
-    },
-    {
-      id:2,
-      name: 'State of a component',
-      exercises: 14
-    }
-  ]
-  
+const Total = (props) => {
+
+  let sum = 0;
+  props.parts.forEach((part) => sum += part.exercises)
+
+  return (
+    <>
+      <p>Number of exercises {sum}</p>
+    </>
+  )
+}
+
+const App = () => {
+  const course = {
+    name: 'Half Stack application development',
+    parts: [
+      {
+        name: 'Fundamentals of React',
+        exercises: 10
+      },
+      {
+        name: 'Using props to pass data',
+        exercises: 7
+      },
+      {
+        name: 'State of a component',
+        exercises: 14
+      }
+    ]
+  };
+
   return (
     <div>
-      <Header course={course}/>
-      <Content soderzhanie={[
-      [parts[0].name +" has " + parts[0].exercises+" exersizes."],
-      [parts[1].name +" has " + parts[1].exercises+" exersizes."],
-      [parts[2].name +" has " + parts[2].exercises+" exersizes."]]}
-      
-      />
-      <Total total_exrszs={parts[0].exercises+parts[1].exercises+parts[2].exercises}/>
+      <Header course={course.name} />
+      <Content parts={course.parts} />
+      <Total parts={course.parts} />
     </div>
   )
 }
 
-export default App
+export default App;
